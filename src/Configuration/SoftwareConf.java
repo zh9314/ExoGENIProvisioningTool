@@ -67,10 +67,10 @@ public class SoftwareConf {
 				
 				System.out.println("end run.sh");
 				
-				Thread.sleep(20000);
+				//Thread.sleep(20000);
 				
-				ps = Runtime.getRuntime().exec("rm "+runFilePath);  
-		        ps.waitFor();
+				//ps = Runtime.getRuntime().exec("rm "+runFilePath);  
+		        //ps.waitFor();
 			}
 			} catch (IOException | InterruptedException e) {
 				// TODO Auto-generated catch block

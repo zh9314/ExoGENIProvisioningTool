@@ -74,7 +74,7 @@ public class SshConf {
 			    fw.write("echo \""+userName+" ALL=(ALL)NOPASSWD: ALL\" >> /etc/sudoers \n");
 			    fw.write("chmod 440 /etc/sudoers \n");
 			    fw.write("chown -R "+userName+":"+userName+" /home/"+userName+"/.ssh/\n");
-			    fw.close();
+			    fw.close();  
 			    
 			    String runFilePath = ARP.currentDir+"geni_runSSH_"+currentMili+".sh";
 			    fw = new FileWriter(runFilePath, false);
@@ -91,8 +91,9 @@ public class SshConf {
 				ps = Runtime.getRuntime().exec("sh "+runFilePath);  
 				ps.waitFor();
 				
-			    ps = Runtime.getRuntime().exec("rm "+runFilePath+" "+sshFilePath);  
-				ps.waitFor();
+				//Thread.sleep(2000);
+			    //ps = Runtime.getRuntime().exec("rm "+runFilePath+" "+sshFilePath);  
+				//ps.waitFor();
 	    	}
 		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
