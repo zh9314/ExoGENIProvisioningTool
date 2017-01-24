@@ -82,6 +82,7 @@ public class SshConf {
 			    fw.write("scp -i "+sshPriKey+" "+sshOption+" "+sshFilePath+" root@"+pubAddress+":~/ssh.sh\n");
 			    fw.write("scp -i "+sshPriKey+" "+sshOption+" "+pubKeyPath+" root@"+pubAddress+":~/"+pubKeyName+"\n");
 			    fw.write("ssh -i "+sshPriKey+" "+sshOption+" root@"+pubAddress+" \"sudo ./ssh.sh\"\n");
+			    fw.write("sleep 2s");
 			    fw.write("ssh -i "+sshPriKey+" "+sshOption+" root@"+pubAddress+" \"rm ssh.sh\"\n");
 			    fw.close();
 			    
