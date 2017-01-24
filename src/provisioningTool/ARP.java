@@ -323,9 +323,10 @@ public class ARP {
 			
 			sliceNames = args[3].substring(begin, end);
 			RPCConnector rpc = new RPCConnector(confLoader, swLog);
-			createSlice(indl_s, sliceNames, rpc, "null");
-			getAddressInfo(sliceNames, args[3], tsa.nodes);
-			configuration(tsa.nodes, tsa.publicKeyPath, tsa.userName, confLoader.SshPriKeyPath);
+			if(createSlice(indl_s, sliceNames, rpc, "null")){
+				getAddressInfo(sliceNames, args[3], tsa.nodes);
+				configuration(tsa.nodes, tsa.publicKeyPath, tsa.userName, confLoader.SshPriKeyPath);
+			}
 			swLog.closeLog();
 			
 			
