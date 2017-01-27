@@ -4,8 +4,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import provisioningTool.ARP;
+import provisioningTool.Logger;
 
 public class SoftwareConf {
+	
+	private static Logger swLog;
+	
+	
 	private String scriptPath = "";
 	private String installDir = "";
 	private String pubAddress = "";
@@ -14,12 +19,13 @@ public class SoftwareConf {
 	
 	private String sshOption = "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
 	
-	public SoftwareConf(String sp, String id, String pa, String un, String SshPriKey){
+	public SoftwareConf(String sp, String id, String pa, String un, String SshPriKey, Logger log){
 		scriptPath = sp;
 		installDir = id;
 		pubAddress = pa;
 		userName = un;
 		sshPriKey = SshPriKey;
+		swLog = log;
 	}
 	
 	public void installSofware(String OStype){
@@ -66,6 +72,8 @@ public class SoftwareConf {
 				ps.waitFor();
 				
 				System.out.println("end run.sh");
+				
+				swLog.log("DEBUG", "SoftwareConf.installSoftware", "The script of "+scriptPath+" has been executed!");
 				
 				//Thread.sleep(20000);
 				

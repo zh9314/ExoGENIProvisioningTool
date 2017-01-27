@@ -4,8 +4,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import provisioningTool.ARP;
+import provisioningTool.Logger;
 
 public class SshConf {
+	
+	private static Logger swLog;
+	
+	
 	private String pubAddress = "";
 	private String userName = "";
 	private String pubKeyPath = "";
@@ -13,11 +18,12 @@ public class SshConf {
 	
 	private String sshOption = "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
 	
-	public SshConf(String pa, String un, String pk, String SshPriKey){
+	public SshConf(String pa, String un, String pk, String SshPriKey, Logger log){
 		pubAddress = pa;
 		userName = un;
 		pubKeyPath = pk;
 		sshPriKey = SshPriKey;
+		swLog = log;
 	}
 	
 	/*public void firstConnect(){
@@ -91,6 +97,8 @@ public class SshConf {
 				
 				ps = Runtime.getRuntime().exec("sh "+runFilePath);  
 				ps.waitFor();
+				
+				swLog.log("DEBUG", "SshConf.confUserSSH", "The user account of "+userName+" has been configured!");
 				
 				//Thread.sleep(2000);
 			    //ps = Runtime.getRuntime().exec("rm "+runFilePath+" "+sshFilePath);  

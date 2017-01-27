@@ -42,6 +42,8 @@ public class toscaSubAnalysis {
 							if(sOrt.equals("source")){
 								if(!tmpEth.ethName.equals(connections.get(x).source.ethName)){
 									System.out.println("The source port name of connection "+cName+" is conflicted!");
+									swLog.log("ERROR", "toscaSubAnalysis.completeEthInfo", 
+											"The source port name of connection "+cName+" is conflicted!");
 									System.exit(-1);
 								}
 								tmpEth.privateAddress = connections.get(x).source.address;
@@ -52,6 +54,8 @@ public class toscaSubAnalysis {
 							}else if(sOrt.equals("target")){
 								if(!tmpEth.ethName.equals(connections.get(x).target.ethName)){
 									System.out.println("The target port name of connection "+cName+" is conflicted!");
+									swLog.log("ERROR", "toscaSubAnalysis.completeEthInfo", 
+											"The target port name of connection "+cName+" is conflicted!");
 									System.exit(-1);
 								}
 								tmpEth.privateAddress = connections.get(x).target.address;
@@ -62,6 +66,8 @@ public class toscaSubAnalysis {
 							}
 							else{
 								System.out.println("Something wrong with the connection!");
+								swLog.log("ERROR", "toscaSubAnalysis.completeEthInfo", 
+										"Something wrong with the connection!");
 								System.exit(-1);
 							}
 							break;
@@ -71,6 +77,8 @@ public class toscaSubAnalysis {
 				else{      /////it's belong to a subnet
 					if(belong2subnet){
 						System.out.println("node cannot belong to two subnets at same time");
+						swLog.log("ERROR", "toscaSubAnalysis.completeEthInfo", 
+								"node cannot belong to two subnets at same time");
 						System.exit(-1);
 					}
 					belong2subnet = true;
@@ -225,10 +233,14 @@ public class toscaSubAnalysis {
 					tmpEth.ethName = jsonEth.getString("name");
 					if(jsonEth.has("connection_name") && jsonEth.has("subnet_name")){
 						System.out.println("Format is wrong with both connection and subnet!");
+						swLog.log("ERROR", "toscaSubAnalysis.json2node", 
+								"Format is wrong with both connection and subnet!");
 						System.exit(-1);
 					}
 					if(!jsonEth.has("connection_name") && !jsonEth.has("subnet_name")){
 						System.out.println("Format is wrong without any connection or subnet!");
+						swLog.log("ERROR", "toscaSubAnalysis.json2node", 
+								"Format is wrong without any connection or subnet!");
 						System.exit(-1);
 					}
 					if(jsonEth.has("connection_name")){

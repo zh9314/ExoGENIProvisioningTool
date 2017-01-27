@@ -250,13 +250,13 @@ public class ARP {
 			
 			swLog.log("INFO", "ARP.configuration", "Configuration on node "+tmpNode.nodeName+" OStype "+OStype);
 			//System.out.println("OS: "+OStype);
-			SshConf sshConf = new SshConf(pubAddress, userName, pubKeyPath, sshPriKeyPath);
+			SshConf sshConf = new SshConf(pubAddress, userName, pubKeyPath, sshPriKeyPath, swLog);
 			
 			if(!pubKeyPath.equals("null"))
 				sshConf.confUserSSH(OStype);
 			
 			SoftwareConf softConf = new SoftwareConf(scriptPath, installDir, 
-					pubAddress, userName, sshPriKeyPath);
+					pubAddress, userName, sshPriKeyPath, swLog);
 			softConf.installSofware(OStype);
 		}
 	}
